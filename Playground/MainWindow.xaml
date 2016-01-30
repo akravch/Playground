@@ -1,0 +1,49 @@
+﻿<Window x:Class="Playground.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playground"
+        mc:Ignorable="d"
+        Title="Animated Polyline" 
+        Height="500" 
+        Width="450">
+    <StackPanel>
+        <CheckBox Name="IsAnimatedCheckBox"
+                  Margin="4,0,0,0"
+                  IsChecked="True"
+                  Content="Is Animated" />
+        <CheckBox Name="ShowLineCheckBox"
+                  Margin="4,0,0,0"
+                  IsChecked="True"
+                  Content="Show Line" />
+        <Label Content="{Binding Value, ElementName=SpeedSlider}"
+               ContentStringFormat="{}Speed (pixels per second): {0:0.###}" />
+        <Slider Name="SpeedSlider" 
+                Value="150"
+                Minimum="1"
+                Maximum="1000.0" />
+        <Label Content="{Binding Value, ElementName=IntervalSlider}"
+               ContentStringFormat="{}Interval between dots (pixels): {0:0.###}" />
+        <Slider Name="IntervalSlider"
+                Value="150"
+                Minimum="20"
+                Maximum="500.0" />
+        <local:AnimatedPolyline Stroke="Red"
+                                Points="10,10 10,80 80,80 80,160 200,220 150,40 280,80 240,300 400,300"
+                                IsAnimated="{Binding IsChecked, ElementName=IsAnimatedCheckBox}"
+                                DotSpeed="{Binding Value, ElementName=SpeedSlider}"
+                                DotInterval="{Binding Value, ElementName=IntervalSlider}">
+            <local:AnimatedPolyline.Style>
+                <Style TargetType="{x:Type local:AnimatedPolyline}">
+                    <Setter Property="StrokeThickness" Value="3" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=ShowLineCheckBox}" Value="False">
+                            <Setter Property="StrokeThickness" Value="0.0" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:AnimatedPolyline.Style>
+        </local:AnimatedPolyline>
+    </StackPanel>
+</Window>
