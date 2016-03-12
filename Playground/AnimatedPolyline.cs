@@ -18,7 +18,7 @@ namespace Playground
         private const double DefaultDotInterval = 150.0;
         private const double DefaultDotSpeed = DefaultDotInterval / 1000.0;
 
-        private static readonly Pen EmptyPen = new Pen(); // No need to recreate an empty pen on each render action.
+        private static readonly Pen EmptyPen = new Pen(Brushes.Black, 2.0); // No need to recreate an empty pen on each render action.
 
         private Geometry polylineGeometry;
         private double length;

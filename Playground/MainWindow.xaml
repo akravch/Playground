@@ -29,17 +29,40 @@
                 Value="150"
                 Minimum="20"
                 Maximum="500.0" />
-        <local:AnimatedPolyline Stroke="Red"
+        <local:AnimatedPolyline Stroke="Orange"
                                 Points="10,10 10,80 80,80 80,160 200,220 150,40 280,80 240,300 400,300"
                                 IsAnimated="{Binding IsChecked, ElementName=IsAnimatedCheckBox}"
                                 DotSpeed="{Binding Value, ElementName=SpeedSlider}"
-                                DotInterval="{Binding Value, ElementName=IntervalSlider}">
+                                DotInterval="{Binding Value, ElementName=IntervalSlider}"
+                                DotRadius="5">
             <local:AnimatedPolyline.Style>
                 <Style TargetType="{x:Type local:AnimatedPolyline}">
                     <Setter Property="StrokeThickness" Value="3" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsChecked, ElementName=ShowLineCheckBox}" Value="False">
                             <Setter Property="StrokeThickness" Value="0.0" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:AnimatedPolyline.Style>
+        </local:AnimatedPolyline>
+
+        <local:AnimatedPolyline Stroke="Red"
+                                Points="10,10 10,80 80,80 80,160 200,220 150,40 280,80 240,300 400,300"
+                                IsAnimated="{Binding IsChecked, ElementName=IsAnimatedCheckBox}"
+                                DotSpeed="{Binding Value, ElementName=SpeedSlider}"
+                                DotInterval="{Binding Value, ElementName=IntervalSlider}"
+                                DotRadius="5"
+                                Margin="0,-200,0,0">
+            <local:AnimatedPolyline.Style>
+                <Style TargetType="{x:Type local:AnimatedPolyline}">
+                    <Setter Property="StrokeThickness"
+                            Value="3" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=ShowLineCheckBox}"
+                                     Value="False">
+                            <Setter Property="StrokeThickness"
+                                    Value="0.0" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
